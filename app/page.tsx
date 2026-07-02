@@ -116,10 +116,56 @@ const gallery = [
   },
 ];
 
+const testimonials = [
+  {
+    name: "糯米的主人",
+    pet: "比熊 / 精致洗护造型",
+    rating: "★★★★★",
+    quote:
+      "第一次来就很安心，护理师会先摸清毛结位置再沟通造型。糯米吹毛时不太紧张，回家香香软软的。",
+  },
+  {
+    name: "小橘的主人",
+    pet: "猫咪 / 低应激护理",
+    rating: "★★★★★",
+    quote:
+      "我家猫特别怕陌生环境，这里安排了安静时段，整个过程很快也很轻柔。结束后还提醒了耳朵清洁频率。",
+  },
+  {
+    name: "豆包的主人",
+    pet: "柯基 / 基础洗护",
+    rating: "★★★★★",
+    quote:
+      "脚底毛和指甲修得很细，洗完没有刺鼻香味。护理记录写得清楚，下次什么时候来一看就知道。",
+  },
+  {
+    name: "Mika 的主人",
+    pet: "贵宾 / 造型修剪",
+    rating: "★★★★★",
+    quote:
+      "带了参考照片过去，护理师会按毛量调整，不会一味照搬。圆头修得很自然，拍照特别上镜。",
+  },
+  {
+    name: "旺财的主人",
+    pet: "柴犬 / 换毛期护理",
+    rating: "★★★★★",
+    quote:
+      "换毛期家里到处飘毛，做完深层梳理明显舒服很多。店里动线干净，看得到操作过程。",
+  },
+  {
+    name: "布丁的主人",
+    pet: "英短 / 梳毛清洁",
+    rating: "★★★★★",
+    quote:
+      "猫咪回来没有闷闷不乐，说明过程真的比较温和。工作人员会把不适合强做的项目提前讲清楚。",
+  },
+];
+
 const navItems = [
   ["#services", "服务"],
   ["#care", "护理标准"],
   ["#prices", "套餐"],
+  ["#testimonials", "评价"],
   ["#gallery", "环境"],
   ["#booking", "预约"],
 ];
@@ -302,6 +348,44 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="testimonials" className="overflow-hidden bg-white px-4 py-16 md:px-14 md:py-20">
+        <div className="mx-auto w-[min(1180px,100%)]">
+          <SectionHead
+            title="客户评价"
+            text="来自附近宠物主人的真实感受：护理过程温和、沟通透明，洗完也要让小朋友舒服。"
+          />
+          <div
+            className="relative -mx-4 overflow-hidden px-4 [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)] md:-mx-8 md:px-8"
+            aria-label="客户评价自动轮播"
+          >
+            <div className="testimonial-track flex w-max gap-4 py-2">
+              {[...testimonials, ...testimonials].map((item, index) => (
+                <article
+                  className={`${cardClass} flex w-[min(82vw,360px)] min-h-[250px] flex-col p-6 md:w-[380px]`}
+                  key={`${item.name}-${index}`}
+                >
+                  <div className="mb-5 flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-xl font-extrabold">{item.name}</h3>
+                      <p className="mt-1 text-sm font-bold text-muted">{item.pet}</p>
+                    </div>
+                    <span className="whitespace-nowrap text-sm font-black text-sun" aria-label="五星好评">
+                      {item.rating}
+                    </span>
+                  </div>
+                  <p className="text-[17px] leading-8 text-[#40505e]">“{item.quote}”</p>
+                  <div className="mt-auto pt-5">
+                    <span className="inline-flex rounded-full bg-[#ddf4eb] px-3 py-1 text-sm font-bold text-mint-dark">
+                      已复购护理
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="px-4 py-16 md:px-14 md:py-20">
         <div className="mx-auto w-[min(1180px,100%)]">
           <SectionHead title="到店流程" text="流程清晰，主人心里有数，宠物也少一点陌生感。" />
@@ -347,7 +431,7 @@ export default function Home() {
       </section>
 
       <section id="booking" className="bg-gradient-to-b from-paper to-sky px-4 py-16 md:px-14 md:py-20">
-        <div className="mx-auto grid w-[min(1180px,100%)] items-stretch gap-6 lg:grid-cols-[.9fr_1.1fr]">
+        <div className="mx-auto grid w-[min(1180px,100%)] items-stretch gap-6">
           <aside className={`${cardClass} bg-ink p-7 text-white`}>
             <h2 className="mb-4 text-[clamp(28px,4vw,44px)] font-black leading-tight">
               预约前请告诉我们这些信息
@@ -374,7 +458,7 @@ export default function Home() {
               </p>
               <div className="overflow-hidden rounded-lg border border-white/20 bg-[#f6fbf8] shadow-[0_14px_28px_rgba(10,25,32,.18)]" aria-label="泡泡爪宠物洗护店门店位置示意图">
                 <img
-                  className="aspect-video h-auto w-full object-cover"
+                  className="h-auto w-full object-contain"
                   src="/assets/store-map-final.png"
                   alt="泡泡爪宠物洗护店位于上海市普陀区宜川路街道陕西北路 1620 号的可爱风格地图"
                 />

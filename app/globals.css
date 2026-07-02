@@ -14,3 +14,34 @@ body {
 img {
   display: block;
 }
+
+.testimonial-track {
+  animation: testimonial-scroll 34s linear infinite;
+}
+
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes testimonial-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-track {
+    animation: none;
+    overflow-x: auto;
+    max-width: 100%;
+    scroll-snap-type: x mandatory;
+  }
+
+  .testimonial-track > * {
+    scroll-snap-align: start;
+  }
+}
