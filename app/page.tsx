@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { BookingForm } from "./booking-form";
 
 const services = [
   {
@@ -213,7 +213,7 @@ export default function Home() {
             <p className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-[#ffe2a3]">
               社区宠物洗护 / 猫犬分区 / 透明可视
             </p>
-            <h1 className="mb-5 text-[clamp(42px,7vw,86px)] font-black leading-[1.02]">
+            <h1 className="mb-5 whitespace-nowrap text-[clamp(40px,6.2vw,78px)] font-black leading-[1.02]">
               泡泡爪宠物洗护店
             </h1>
             <p className="mb-7 max-w-[610px] text-[clamp(17px,2.1vw,22px)] text-white/90">
@@ -431,7 +431,7 @@ export default function Home() {
       </section>
 
       <section id="booking" className="bg-gradient-to-b from-paper to-sky px-4 py-16 md:px-14 md:py-20">
-        <div className="mx-auto grid w-[min(1180px,100%)] items-stretch gap-6">
+        <div className="mx-auto grid w-[min(1180px,100%)] items-stretch gap-6 md:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)]">
           <aside className={`${cardClass} bg-ink p-7 text-white`}>
             <h2 className="mb-4 text-[clamp(28px,4vw,44px)] font-black leading-tight">
               预约前请告诉我们这些信息
@@ -469,55 +469,9 @@ export default function Home() {
           <div className={`${cardClass} p-6`}>
             <SectionHead
               title="在线预约"
-              text="提交后我们会在营业时间内电话确认。此表单为静态展示，不会真实发送数据。"
+              text="提交后我们会在营业时间内电话确认。请尽量填写宠物状态，方便提前安排护理时长。"
             />
-            <form>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <FormLabel label="主人姓名">
-                  <input className={fieldClass} type="text" placeholder="请输入姓名" />
-                </FormLabel>
-                <FormLabel label="联系电话">
-                  <input className={fieldClass} type="tel" placeholder="请输入手机号" />
-                </FormLabel>
-                <FormLabel label="宠物类型">
-                  <select className={fieldClass} defaultValue="狗狗">
-                    <option>狗狗</option>
-                    <option>猫咪</option>
-                    <option>其他小宠</option>
-                  </select>
-                </FormLabel>
-                <FormLabel label="预约项目">
-                  <select className={fieldClass} defaultValue="基础洗护">
-                    <option>基础洗护</option>
-                    <option>精致洗护造型</option>
-                    <option>猫咪低应激护理</option>
-                    <option>皮毛专项护理</option>
-                  </select>
-                </FormLabel>
-                <FormLabel label="期望日期">
-                  <input className={fieldClass} type="date" />
-                </FormLabel>
-                <FormLabel label="期望时段">
-                  <select className={fieldClass} defaultValue="10:00-12:00">
-                    <option>10:00-12:00</option>
-                    <option>12:00-15:00</option>
-                    <option>15:00-18:00</option>
-                    <option>18:00-20:00</option>
-                  </select>
-                </FormLabel>
-                <FormLabel label="宠物情况与护理备注" className="sm:col-span-2">
-                  <textarea
-                    className={`${fieldClass} min-h-28 resize-y`}
-                    placeholder="例如：泰迪 5kg，轻微打结，希望保留圆头造型"
-                  />
-                </FormLabel>
-                <div className="sm:col-span-2">
-                  <button className={buttonClass} type="button">
-                    提交预约
-                  </button>
-                </div>
-              </div>
-            </form>
+            <BookingForm />
           </div>
         </div>
       </section>
@@ -541,22 +495,3 @@ function SectionHead({ title, text }: { title: string; text?: string }) {
   );
 }
 
-const fieldClass =
-  "min-h-12 w-full rounded-lg border border-line bg-white px-3 py-2 text-ink outline-none transition placeholder:text-muted/70 focus:border-mint focus:ring-2 focus:ring-mint/20";
-
-function FormLabel({
-  label,
-  className = "",
-  children,
-}: {
-  label: string;
-  className?: string;
-  children: ReactNode;
-}) {
-  return (
-    <label className={`grid gap-2 text-sm font-bold text-[#40505e] ${className}`}>
-      {label}
-      {children}
-    </label>
-  );
-}
